@@ -864,7 +864,6 @@ JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, StringRef s2)            
 JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, uint8 number)                { return s1 += (int) number; }
 JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const short number)          { return s1 += (int) number; }
 JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const int number)            { return s1 += number; }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const unsigned short number) { return s1 += (uint64) number; }
 JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const long number)           { return s1 += String (number); }
 JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const unsigned long number)  { return s1 += String (number); }
 JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const int64 number)          { return s1 += String (number); }
@@ -879,7 +878,7 @@ JUCE_API OutputStream& JUCE_CALLTYPE operator<< (OutputStream& stream, const Str
 
 JUCE_API OutputStream& JUCE_CALLTYPE operator<< (OutputStream& stream, StringRef text)
 {
-    const size_t numBytes = CharPointer_UTF8::getBytesRequiredFor (text.text);
+    auto numBytes = CharPointer_UTF8::getBytesRequiredFor (text.text);
 
    #if (JUCE_STRING_UTF_TYPE == 8)
     stream.write (text.text.getAddress(), numBytes);
@@ -2378,25 +2377,6 @@ public:
                 String numStr;
                 numStr << std::numeric_limits<int16>::min();
                 expect (numStr == "-32768");
-            }
-            // uint16
-            {
-                String numStr (std::numeric_limits<uint16>::max());
-                expect (numStr == "65535");
-            }
-            {
-                String numStr (std::numeric_limits<uint16>::min());
-                expect (numStr == "0");
-            }
-            {
-                String numStr;
-                numStr << std::numeric_limits<uint16>::max();
-                expect (numStr == "65535");
-            }
-            {
-                String numStr;
-                numStr << std::numeric_limits<uint16>::min();
-                expect (numStr == "0");
             }
             // int32
             {
