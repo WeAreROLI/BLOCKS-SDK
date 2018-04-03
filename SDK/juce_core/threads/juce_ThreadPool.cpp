@@ -207,10 +207,13 @@ void ThreadPool::moveJobToFront (const ThreadPoolJob* job) noexcept
 {
     const ScopedLock sl (lock);
 
-    auto index = jobs.indexOf (const_cast<ThreadPoolJob*> (job));
+    if (! job->isActive)
+    {
+        auto index = jobs.indexOf (const_cast<ThreadPoolJob*> (job));
 
-    if (index > 0 && ! job->isActive)
-        jobs.move (index, 0);
+        if (index > 0)
+            jobs.move (index, 0);
+    }
 }
 
 bool ThreadPool::waitForJobToFinish (const ThreadPoolJob* const job, const int timeOutMs) const

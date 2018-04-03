@@ -165,8 +165,6 @@ public:
     static AudioIODeviceType* createAudioIODeviceType_OpenSLES();
     /** Creates an Oboe device type if it's available on this platform, or returns null. */
     static AudioIODeviceType* createAudioIODeviceType_Oboe();
-    /** Creates a Bela device type if it's available on this platform, or returns null. */
-    static AudioIODeviceType* createAudioIODeviceType_Bela();
 
 protected:
     explicit AudioIODeviceType (const String& typeName);

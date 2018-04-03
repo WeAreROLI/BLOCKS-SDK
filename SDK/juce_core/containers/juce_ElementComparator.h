@@ -82,17 +82,12 @@ static void sortArray (ElementComparator& comparator,
                        int lastElement,
                        const bool retainOrderOfEquivalentItems)
 {
-    jassert (firstElement >= 0);
+    SortFunctionConverter<ElementComparator> converter (comparator);
 
-    if (lastElement > firstElement)
-    {
-        SortFunctionConverter<ElementComparator> converter (comparator);
-
-        if (retainOrderOfEquivalentItems)
-            std::stable_sort (array + firstElement, array + lastElement + 1, converter);
-        else
-            std::sort        (array + firstElement, array + lastElement + 1, converter);
-    }
+    if (retainOrderOfEquivalentItems)
+        std::stable_sort (array + firstElement, array + lastElement + 1, converter);
+    else
+        std::sort        (array + firstElement, array + lastElement + 1, converter);
 }
 
 

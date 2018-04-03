@@ -449,9 +449,6 @@ struct BackgroundDownloadTask  : public URL::DownloadTask
         if (session != nullptr)
             downloadTask = [session downloadTaskWithRequest:request];
 
-        // Workaround for an Apple bug. See https://github.com/AFNetworking/AFNetworking/issues/2334
-        [request HTTPBody];
-
         [request release];
     }
 
@@ -1120,9 +1117,6 @@ private:
                 if (key.isNotEmpty() && value.isNotEmpty())
                     [req addValue: juceStringToNS (value) forHTTPHeaderField: juceStringToNS (key)];
             }
-
-            // Workaround for an Apple bug. See https://github.com/AFNetworking/AFNetworking/issues/2334
-            [req HTTPBody];
 
             connection.reset (new URLConnectionState (req, numRedirectsToFollow));
         }

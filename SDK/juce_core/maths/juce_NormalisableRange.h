@@ -143,9 +143,9 @@ public:
     ValueType convertTo0to1 (ValueType v) const noexcept
     {
         if (convertTo0To1Function != nullptr)
-            return clampTo0To1 (convertTo0To1Function (start, end, v));
+            return convertTo0To1Function (start, end, v);
 
-        auto proportion = clampTo0To1 ((v - start) / (end - start));
+        auto proportion = (v - start) / (end - start);
 
         if (skew == static_cast<ValueType> (1))
             return proportion;
@@ -166,8 +166,6 @@ public:
     */
     ValueType convertFrom0to1 (ValueType proportion) const noexcept
     {
-        proportion = clampTo0To1 (proportion);
-
         if (convertFrom0To1Function != nullptr)
             return convertFrom0To1Function (start, end, proportion);
 
@@ -261,17 +259,6 @@ private:
         jassert (end > start);
         jassert (interval >= ValueType());
         jassert (skew > ValueType());
-    }
-
-    static ValueType clampTo0To1 (ValueType value)
-    {
-        auto clampedValue = jlimit (static_cast<ValueType> (0), static_cast<ValueType> (1), value);
-
-        // If you his this assertion then either your normalisation function is not working
-        // correctly or your input is out of the expected bounds.
-        jassert (clampedValue == value);
-
-        return clampedValue;
     }
 
     typedef std::function<ValueType(ValueType, ValueType, ValueType)> ConverstionFunction;
