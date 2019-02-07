@@ -37,7 +37,7 @@ public:
     PhysicalTopologySource (bool startDetached = false);
 
     /** Destructor. */
-    ~PhysicalTopologySource();
+    ~PhysicalTopologySource() override;
 
     /** Returns the current physical topology. */
     BlockTopology getCurrentTopology() const override;
@@ -88,7 +88,7 @@ protected:
 private:
     //==========================================================================
     DeviceDetector* customDetector = nullptr;
-    struct Internal;
+    friend struct Detector;
     struct DetectorHolder;
     std::unique_ptr<DetectorHolder> detector;
 
