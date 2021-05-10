@@ -48,11 +48,7 @@
 #if JUCE_WINDOWS
  #include <ctime>
 
- #if JUCE_MINGW
-  #include <ws2spi.h>
-  #include <cstdio>
-  #include <locale.h>
- #else
+ #if ! JUCE_MINGW
   #pragma warning (push)
   #pragma warning (disable: 4091)
   #include <Dbghelp.h>
@@ -61,6 +57,12 @@
   #if ! JUCE_DONT_AUTOLINK_TO_WIN32_LIBRARIES
    #pragma comment (lib, "DbgHelp.lib")
   #endif
+ #endif
+
+ #if JUCE_MINGW
+  #include <ws2spi.h>
+  #include <cstdio>
+  #include <locale.h>
  #endif
 
 #else

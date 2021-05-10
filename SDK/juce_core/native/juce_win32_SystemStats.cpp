@@ -23,7 +23,7 @@
 namespace juce
 {
 
-#if JUCE_MSVC
+#if ! JUCE_MINGW
  #pragma intrinsic (__cpuid)
  #pragma intrinsic (__rdtsc)
 #endif
@@ -41,7 +41,7 @@ void Logger::outputDebugString (const String& text)
 
 //==============================================================================
 
-#if JUCE_MINGW || JUCE_CLANG
+#if JUCE_MINGW
 static void callCPUID (int result[4], uint32 type)
 {
   uint32 la = result[0], lb = result[1], lc = result[2], ld = result[3];

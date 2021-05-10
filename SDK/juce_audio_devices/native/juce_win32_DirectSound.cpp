@@ -514,6 +514,7 @@ private:
     IDirectSoundBuffer* pOutputBuffer;
     DWORD writeOffset;
     int totalBytesPerBuffer, bytesPerBuffer;
+    unsigned int lastPlayCursor;
 
     bool firstPlayTime;
     int64 lastPlayTime, ticksPerBuffer;
@@ -1214,13 +1215,13 @@ public:
         initialiseDSoundFunctions();
     }
 
-    void scanForDevices() override
+    void scanForDevices()
     {
         hasScanned = true;
         deviceList.scan();
     }
 
-    StringArray getDeviceNames (bool wantInputNames) const override
+    StringArray getDeviceNames (bool wantInputNames) const
     {
         jassert (hasScanned); // need to call scanForDevices() before doing this
 
@@ -1228,13 +1229,13 @@ public:
                               : deviceList.outputDeviceNames;
     }
 
-    int getDefaultDeviceIndex (bool /*forInput*/) const override
+    int getDefaultDeviceIndex (bool /*forInput*/) const
     {
         jassert (hasScanned); // need to call scanForDevices() before doing this
         return 0;
     }
 
-    int getIndexOfDevice (AudioIODevice* device, bool asInput) const override
+    int getIndexOfDevice (AudioIODevice* device, bool asInput) const
     {
         jassert (hasScanned); // need to call scanForDevices() before doing this
 
@@ -1245,10 +1246,10 @@ public:
         return -1;
     }
 
-    bool hasSeparateInputsAndOutputs() const override   { return true; }
+    bool hasSeparateInputsAndOutputs() const    { return true; }
 
     AudioIODevice* createDevice (const String& outputDeviceName,
-                                 const String& inputDeviceName) override
+                                 const String& inputDeviceName)
     {
         jassert (hasScanned); // need to call scanForDevices() before doing this
 
