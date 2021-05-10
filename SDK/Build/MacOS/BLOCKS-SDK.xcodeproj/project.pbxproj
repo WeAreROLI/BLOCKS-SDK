@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		E2F016B31DB93C320054ECA4 /* juce_audio_basics.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2F016B21DB93C320054ECA4 /* juce_audio_basics.mm */; };
 		E2F016B51DB93C3D0054ECA4 /* juce_audio_devices.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2F016B41DB93C3D0054ECA4 /* juce_audio_devices.mm */; };
-		E2F016B71DB93C480054ECA4 /* juce_blocks_basics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2F016B61DB93C480054ECA4 /* juce_blocks_basics.cpp */; };
+		E2F016B71DB93C480054ECA4 /* roli_blocks_basics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2F016B61DB93C480054ECA4 /* roli_blocks_basics.cpp */; };
 		E2F016B91DB93C540054ECA4 /* juce_core.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2F016B81DB93C540054ECA4 /* juce_core.mm */; };
 		E2F016BB1DB93C5C0054ECA4 /* juce_events.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2F016BA1DB93C5C0054ECA4 /* juce_events.mm */; };
 /* End PBXBuildFile section */
@@ -18,7 +18,7 @@
 		E2BD1B8A1DB62B4000C4F301 /* libBLOCKS-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libBLOCKS-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F016B21DB93C320054ECA4 /* juce_audio_basics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_audio_basics.mm; path = ../../juce_audio_basics/juce_audio_basics.mm; sourceTree = "<group>"; };
 		E2F016B41DB93C3D0054ECA4 /* juce_audio_devices.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_audio_devices.mm; path = ../../juce_audio_devices/juce_audio_devices.mm; sourceTree = "<group>"; };
-		E2F016B61DB93C480054ECA4 /* juce_blocks_basics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = juce_blocks_basics.cpp; path = ../../juce_blocks_basics/juce_blocks_basics.cpp; sourceTree = "<group>"; };
+		E2F016B61DB93C480054ECA4 /* roli_blocks_basics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = roli_blocks_basics.cpp; path = ../../juce_blocks_basics/roli_blocks_basics.cpp; sourceTree = "<group>"; };
 		E2F016B81DB93C540054ECA4 /* juce_core.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_core.mm; path = ../../juce_core/juce_core.mm; sourceTree = "<group>"; };
 		E2F016BA1DB93C5C0054ECA4 /* juce_events.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_events.mm; path = ../../juce_events/juce_events.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,7 +39,7 @@
 			children = (
 				E2F016B21DB93C320054ECA4 /* juce_audio_basics.mm */,
 				E2F016B41DB93C3D0054ECA4 /* juce_audio_devices.mm */,
-				E2F016B61DB93C480054ECA4 /* juce_blocks_basics.cpp */,
+				E2F016B61DB93C480054ECA4 /* roli_blocks_basics.cpp */,
 				E2F016B81DB93C540054ECA4 /* juce_core.mm */,
 				E2F016BA1DB93C5C0054ECA4 /* juce_events.mm */,
 				E2BD1B8B1DB62B4000C4F301 /* Products */,
@@ -140,7 +140,7 @@
 			files = (
 				E2F016B31DB93C320054ECA4 /* juce_audio_basics.mm in Sources */,
 				E2F016B51DB93C3D0054ECA4 /* juce_audio_devices.mm in Sources */,
-				E2F016B71DB93C480054ECA4 /* juce_blocks_basics.cpp in Sources */,
+				E2F016B71DB93C480054ECA4 /* roli_blocks_basics.cpp in Sources */,
 				E2F016B91DB93C540054ECA4 /* juce_core.mm in Sources */,
 				E2F016BB1DB93C5C0054ECA4 /* juce_events.mm in Sources */,
 			);

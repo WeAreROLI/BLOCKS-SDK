@@ -1,0 +1,3 @@
+[submodule "SDK/roli_blocks_basics"]
+	path = SDK/roli_blocks_basics
+	url = https://github.com/WeAreROLI/roli_blocks_basics.git

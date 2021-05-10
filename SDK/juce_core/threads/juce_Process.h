@@ -2,7 +2,7 @@
   ==============================================================================
 
    This file is part of the JUCE library.
-   Copyright (c) 2017 - ROLI Ltd.
+   Copyright (c) 2020 - Raw Material Software Limited
 
    JUCE is an open source library subject to commercial or open-source
    licensing.
@@ -139,7 +139,7 @@ public:
     static void setDockIconVisible (bool isVisible);
    #endif
 
-   #if JUCE_MAC || JUCE_LINUX || DOXYGEN
+   #if JUCE_MAC || JUCE_LINUX || JUCE_BSD || DOXYGEN
     //==============================================================================
     /** UNIX ONLY - Attempts to use setrlimit to change the maximum number of file
         handles that the app can open. Pass 0 or less as the parameter to mean
