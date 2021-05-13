@@ -2,7 +2,7 @@
   ==============================================================================
 
    This file is part of the JUCE library.
-   Copyright (c) 2017 - ROLI Ltd.
+   Copyright (c) 2020 - Raw Material Software Limited
 
    JUCE is an open source library subject to commercial or open-source
    licensing.
@@ -120,22 +120,44 @@ const OwnedArray<AudioIODeviceType>& AudioDeviceManager::getAvailableDeviceTypes
     return availableDeviceTypes;
 }
 
+void AudioDeviceManager::updateCurrentSetup()
+{
+    if (currentAudioDevice != nullptr)
+    {
+        currentSetup.sampleRate     = currentAudioDevice->getCurrentSampleRate();
+        currentSetup.bufferSize     = currentAudioDevice->getCurrentBufferSizeSamples();
+        currentSetup.inputChannels  = currentAudioDevice->getActiveInputChannels();
+        currentSetup.outputChannels = currentAudioDevice->getActiveOutputChannels();
+    }
+}
+
 void AudioDeviceManager::audioDeviceListChanged()
 {
     if (currentAudioDevice != nullptr)
     {
-        auto isCurrentDeviceStillAvailable = [&]
+        auto currentDeviceStillAvailable = [&]
         {
-            for (auto* dt : availableDeviceTypes)
-                if (currentAudioDevice->getTypeName() == dt->getTypeName())
-                    for (auto& dn : dt->getDeviceNames())
-                        if (currentAudioDevice->getName() == dn)
+            auto currentTypeName = currentAudioDevice->getTypeName();
+            auto currentDeviceName = currentAudioDevice->getName();
+
+            for (auto* deviceType : availableDeviceTypes)
+            {
+                if (currentTypeName == deviceType->getTypeName())
+                {
+                    for (auto& deviceName : deviceType->getDeviceNames (true))
+                        if (currentDeviceName == deviceName)
                             return true;
 
-            return false;
-        };
+                    for (auto& deviceName : deviceType->getDeviceNames (false))
+                        if (currentDeviceName == deviceName)
+                            return true;
+                }
+            }
 
-        if (! isCurrentDeviceStillAvailable())
+            return false;
+        }();
+
+        if (! currentDeviceStillAvailable)
         {
             closeAudioDevice();
 
@@ -145,13 +167,7 @@ void AudioDeviceManager::audioDeviceListChanged()
                 initialiseDefault (preferredDeviceName, &currentSetup);
         }
 
-        if (currentAudioDevice != nullptr)
-        {
-            currentSetup.sampleRate     = currentAudioDevice->getCurrentSampleRate();
-            currentSetup.bufferSize     = currentAudioDevice->getCurrentBufferSizeSamples();
-            currentSetup.inputChannels  = currentAudioDevice->getActiveInputChannels();
-            currentSetup.outputChannels = currentAudioDevice->getActiveOutputChannels();
-        }
+        updateCurrentSetup();
     }
 
     sendChangeMessage();
@@ -166,8 +182,9 @@ static void addIfNotNull (OwnedArray<AudioIODeviceType>& list, AudioIODeviceType
 
 void AudioDeviceManager::createAudioDeviceTypes (OwnedArray<AudioIODeviceType>& list)
 {
-    addIfNotNull (list, AudioIODeviceType::createAudioIODeviceType_WASAPI (false));
-    addIfNotNull (list, AudioIODeviceType::createAudioIODeviceType_WASAPI (true));
+    addIfNotNull (list, AudioIODeviceType::createAudioIODeviceType_WASAPI (WASAPIDeviceMode::shared));
+    addIfNotNull (list, AudioIODeviceType::createAudioIODeviceType_WASAPI (WASAPIDeviceMode::exclusive));
+    addIfNotNull (list, AudioIODeviceType::createAudioIODeviceType_WASAPI (WASAPIDeviceMode::sharedLowLatency));
     addIfNotNull (list, AudioIODeviceType::createAudioIODeviceType_DirectSound());
     addIfNotNull (list, AudioIODeviceType::createAudioIODeviceType_ASIO());
     addIfNotNull (list, AudioIODeviceType::createAudioIODeviceType_CoreAudio());
@@ -327,7 +344,7 @@ String AudioDeviceManager::initialiseFromXML (const XmlElement& xml,
     midiDeviceInfosFromXml.clear();
     enabledMidiInputs.clear();
 
-    forEachXmlChildElementWithTagName (xml, c, "MIDIINPUT")
+    for (auto* c : xml.getChildWithTagNameIterator ("MIDIINPUT"))
         midiDeviceInfosFromXml.add ({ c->getStringAttribute ("name"), c->getStringAttribute ("identifier") });
 
     auto isIdentifierAvailable = [] (const Array<MidiDeviceInfo>& available, const String& identifier)
@@ -506,7 +523,7 @@ AudioIODeviceType* AudioDeviceManager::getCurrentDeviceTypeObject() const
 
 static void updateSetupChannels (AudioDeviceManager::AudioDeviceSetup& setup, int defaultNumIns, int defaultNumOuts)
 {
-    auto updateChannels = [](const String& deviceName, BigInteger& channels, int defaultNumChannels)
+    auto updateChannels = [] (const String& deviceName, BigInteger& channels, int defaultNumChannels)
     {
         if (deviceName.isEmpty())
         {
@@ -533,6 +550,8 @@ String AudioDeviceManager::setAudioDeviceSetup (const AudioDeviceSetup& newSetup
     else if (currentAudioDevice != nullptr)
         return {};
 
+    stopDevice();
+
     if (getCurrentDeviceTypeObject() == nullptr
         || (newSetup.inputDeviceName.isEmpty() && newSetup.outputDeviceName.isEmpty()))
     {
@@ -543,8 +562,6 @@ String AudioDeviceManager::setAudioDeviceSetup (const AudioDeviceSetup& newSetup
 
         return {};
     }
-
-    stopDevice();
 
     String error;
 
@@ -692,7 +709,7 @@ void AudioDeviceManager::restartLastAudioDevice()
         {
             // This method will only reload the last device that was running
             // before closeAudioDevice() was called - you need to actually open
-            // one first, with setAudioDevice().
+            // one first, with setAudioDeviceSetup().
             jassertfalse;
             return;
         }
@@ -862,6 +879,7 @@ void AudioDeviceManager::audioDeviceAboutToStartInt (AudioIODevice* const device
             callbacks.getUnchecked(i)->audioDeviceAboutToStart (device);
     }
 
+    updateCurrentSetup();
     sendChangeMessage();
 }
 
@@ -1134,12 +1152,19 @@ void AudioDeviceManager::addMidiInputCallback (const String& name, MidiInputCall
 
 void AudioDeviceManager::removeMidiInputCallback (const String& name, MidiInputCallback* callbackToRemove)
 {
-    for (auto& device : MidiInput::getAvailableDevices())
+    if (name.isEmpty())
     {
-        if (device.name == name)
+        removeMidiInputDeviceCallback ({}, callbackToRemove);
+    }
+    else
+    {
+        for (auto& device : MidiInput::getAvailableDevices())
         {
-            removeMidiInputDeviceCallback (device.identifier, callbackToRemove);
-            return;
+            if (device.name == name)
+            {
+                removeMidiInputDeviceCallback (device.identifier, callbackToRemove);
+                return;
+            }
         }
     }
 }

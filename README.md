@@ -4,7 +4,7 @@
 
 This repository contains the source code of the BLOCKS SDK, which is licensed under the permissive ISC license.
 
-Much more comprehensive documentation can be found at http://developer.roli.com/documentation/the_standalone_blocks_sdk.html.
+Much more comprehensive documentation can be found at https://weareroli.github.io/BLOCKS-SDK/.
 
 The `SDK` directory contains the source code required to compile a library containing the BLOCKS SDK functionality. In the `SDK/Build` directory you will find an Xcode project, a Visual Studio solution and a Linux Makefile which are configured to create a static library on the macOS, Windows and Linux platforms respectively. Simply use the one appropriate for your system. Once you have created this library you can access BLOCKS functionality by linking this library into your application and `#include`-ing the provided header file, `BlocksHeader.h`.
 
@@ -51,7 +51,7 @@ You must also tell your compiler where to find the SDK static library before you
 
 ## Dependencies
 
-- A C++11 compatible compiler
+- A C++17 compatible compiler
 
 ### macOS frameworks
 

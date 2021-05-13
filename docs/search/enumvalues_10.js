@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['saveprogramasdefault_1790',['saveProgramAsDefault',['../namespaceBlocksProtocol.html#af20b1d99b2ab723c554407138edc9af1a8e6b0a93b206a3f2b56dd2314c1ea5e6',1,'BlocksProtocol']]],
+  ['scale_1791',['scale',['../classControlButton.html#a891776295057786f99f14631b1aa2794ac9b833f510533f89cc26705999ed2bca',1,'ControlButton::scale()'],['../namespaceroli_1_1BlocksProtocol.html#a35bcaacfb91f45aa42a778527621f8c4a3474b168ef441db5e0cf4bcfdd539836',1,'roli::BlocksProtocol::scale()']]],
+  ['seaboardblock_1792',['seaboardBlock',['../classBlock.html#a2c6b3c425b9b8cb708b23e553fa81324ad44a5d974e8503f978e605adc27ca156',1,'Block']]],
+  ['setasdefault_1793',['setAsDefault',['../classBlock.html#ad586db7c08105b0974f9913a3aae7cb4a72dbea9c5d08b6453503c1918311c385',1,'Block']]],
+  ['setastemp_1794',['setAsTemp',['../classBlock.html#ad586db7c08105b0974f9913a3aae7cb4aadfb6611e0229729431ca0cc99103294',1,'Block']]],
+  ['setconfig_1795',['setConfig',['../namespaceBlocksProtocol.html#ad54d15b68ca1356e84793a7c60c5b524a9531f8dec238e91a95dd4486e301566a',1,'BlocksProtocol']]],
+  ['setconfigstate_1796',['setConfigState',['../namespaceBlocksProtocol.html#ad54d15b68ca1356e84793a7c60c5b524a087d503f8b4909dee907f632de0d3334',1,'BlocksProtocol']]],
+  ['setfewbyteswithlastvalue_1797',['setFewBytesWithLastValue',['../namespaceBlocksProtocol.html#a3ab101fceeb18db84767246616d6f770a9044476b25e129d6eba9c40b734d226a',1,'BlocksProtocol']]],
+  ['setfewbyteswithvalue_1798',['setFewBytesWithValue',['../namespaceBlocksProtocol.html#a3ab101fceeb18db84767246616d6f770a2c28367447df7ff47326a784dc3414e0',1,'BlocksProtocol']]],
+  ['setmanybyteswithvalue_1799',['setManyBytesWithValue',['../namespaceBlocksProtocol.html#a3ab101fceeb18db84767246616d6f770a190358a9ba9869ccb24764ed621a2820',1,'BlocksProtocol']]],
+  ['setname_1800',['setName',['../namespaceBlocksProtocol.html#a01770550cdd3086814fa4169d9fa39b4ade5d7a1c8b618fecc81bd22b79ef798a',1,'BlocksProtocol']]],
+  ['setsequenceofbytes_1801',['setSequenceOfBytes',['../namespaceBlocksProtocol.html#a3ab101fceeb18db84767246616d6f770ad0140b9a8883cfdbb221a2b252dbdefd',1,'BlocksProtocol']]],
+  ['shareddatachange_1802',['sharedDataChange',['../namespaceBlocksProtocol.html#a01770550cdd3086814fa4169d9fa39b4a24dd14178f112a548f94ac8a9252f854',1,'BlocksProtocol']]],
+  ['skipbytesfew_1803',['skipBytesFew',['../namespaceBlocksProtocol.html#a3ab101fceeb18db84767246616d6f770a3d8cdeac3be8949c2de0aeb4d6982d65',1,'BlocksProtocol']]],
+  ['skipbytesmany_1804',['skipBytesMany',['../namespaceBlocksProtocol.html#a3ab101fceeb18db84767246616d6f770acc98f9178ade540ca66f270c56cf931e',1,'BlocksProtocol']]],
+  ['slidecc_1805',['slideCC',['../namespaceroli_1_1BlocksProtocol.html#a35bcaacfb91f45aa42a778527621f8c4a77bd65968303a50ddb3db817b8ba4d07',1,'roli::BlocksProtocol']]],
+  ['slidemode_1806',['slideMode',['../namespaceroli_1_1BlocksProtocol.html#a35bcaacfb91f45aa42a778527621f8c4aa544f7c8a5650a659f296d69c45a1404',1,'roli::BlocksProtocol']]],
+  ['slidesensitivity_1807',['slideSensitivity',['../classControlButton.html#a891776295057786f99f14631b1aa2794acca11dd1c754621ac2d4ef3686f68e60',1,'ControlButton::slideSensitivity()'],['../namespaceroli_1_1BlocksProtocol.html#a35bcaacfb91f45aa42a778527621f8c4a54b4cae7af60ab9dba7cd1ed5ee4da76',1,'roli::BlocksProtocol::slideSensitivity()']]],
+  ['snap_1808',['snap',['../classControlButton.html#a891776295057786f99f14631b1aa2794ac1514f029b82b12f7617e3b81472bea0',1,'ControlButton']]],
+  ['south_1809',['south',['../structBlock_1_1ConnectionPort.html#adb5cd70e80bd854e5a40436a99d003eaa50fd76e33fe5b9617c5ca99008af8904',1,'Block::ConnectionPort']]],
+  ['stackoverflow_1810',['stackOverflow',['../structlittlefoot_1_1Runner.html#a8bee4ec6b7ef24029af89651ecd452c9aefab200f4775c7a6f73743d4dcd6681a',1,'littlefoot::Runner']]],
+  ['stackunderflow_1811',['stackUnderflow',['../structlittlefoot_1_1Runner.html#a8bee4ec6b7ef24029af89651ecd452c9a43646f98320e403e1b7e0e94f96722cf',1,'littlefoot::Runner']]],
+  ['sustain_1812',['sustain',['../classControlButton.html#a891776295057786f99f14631b1aa2794a2339a8eba5c6912f6c1958cf3c29f38b',1,'ControlButton']]],
+  ['sysex_1813',['sysex',['../group__LittleFootFunctions.html#gga8005f1f182fd0248a710ca64f72508d4a2868e44729ef465f8774fb5bd3947fca',1,'roli_LittleFootFunctions.dox']]]
+];
