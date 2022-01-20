@@ -13,7 +13,7 @@ JUCE_OBJDIR := build/$(CONFIG)
 
 JUCE_INCLUDES := -I../..
 JUCE_SDKDEFINES := -DJUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1 -DJUCE_STANDALONE_APPLICATION=1
-JUCE_CXXFLAGS = -std=c++11 $(DEPFLAGS) -march=native -DLINUX=1 $(JUCE_SDKDEFINES) $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread $(JUCE_INCLUDES)
+JUCE_CXXFLAGS = -std=c++17 $(DEPFLAGS) -march=native -DLINUX=1 $(JUCE_SDKDEFINES) $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread $(JUCE_INCLUDES)
 
 ifeq ($(CONFIG),Debug)
   JUCE_CXXFLAGS += -DDEBUG=1 -D_DEBUG=1 -g -ggdb -O0
@@ -23,7 +23,7 @@ ifeq ($(CONFIG),Release)
   JUCE_CXXFLAGS += -DNDEBUG=1 -Os
 endif
 
-JUCE_MODULES := juce_audio_basics juce_audio_devices juce_blocks_basics juce_core juce_events
+JUCE_MODULES := juce_audio_basics juce_audio_devices roli_blocks_basics juce_core juce_events
 JUCE_SOURCE := $(foreach MODULE_NAME,$(JUCE_MODULES),../../$(MODULE_NAME)/$(MODULE_NAME).cpp)
 JUCE_OBJECTS := $(foreach MODULE_NAME,$(JUCE_MODULES),$(JUCE_OBJDIR)/$(MODULE_NAME)/$(MODULE_NAME).o)
 
