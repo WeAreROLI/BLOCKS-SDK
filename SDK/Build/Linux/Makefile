@@ -23,7 +23,7 @@ ifeq ($(CONFIG),Release)
   JUCE_CXXFLAGS += -DNDEBUG=1 -Os
 endif
 
-JUCE_MODULES := juce_audio_basics juce_audio_devices juce_blocks_basics juce_core juce_events
+JUCE_MODULES := juce_audio_basics juce_audio_devices roli_blocks_basics juce_core juce_events
 JUCE_SOURCE := $(foreach MODULE_NAME,$(JUCE_MODULES),../../$(MODULE_NAME)/$(MODULE_NAME).cpp)
 JUCE_OBJECTS := $(foreach MODULE_NAME,$(JUCE_MODULES),$(JUCE_OBJDIR)/$(MODULE_NAME)/$(MODULE_NAME).o)
 
